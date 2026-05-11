@@ -7,16 +7,17 @@ st.set_page_config(page_title="실시간 환율 조회기", page_icon="💰", la
 # --- HTML/CSS 꾸미기 시작 ---
 st.markdown("""
     <style>
-    /* 배경 워터마크 추가 ('1509송기석') */
-    .watermark {
+    /* Streamlit 전체 배경에 워터마크 추가 (가장 확실한 방법) */
+    [data-testid="stAppViewContainer"]::before {
+        content: '1509송기석';
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         font-size: 8rem;
-        color: rgba(0, 0, 0, 0.1); /* 글씨가 보이도록 투명도를 살짝 높임 */
-        z-index: 9999; /* 화면 맨 앞으로 오도록 설정 (다른 배경에 안 가려짐) */
-        pointer-events: none; /* 화면 맨 앞에 있어도 클릭/입력을 방해하지 않음 */
+        color: rgba(0, 0, 0, 0.1); /* 연한 투명도 */
+        z-index: 999999; /* 무조건 맨 앞에 오도록 */
+        pointer-events: none; /* 클릭 방해 없음 */
         white-space: nowrap;
         font-weight: bold;
         user-select: none;
@@ -54,8 +55,6 @@ st.markdown("""
         font-weight: bold;
     }
     </style>
-    
-    <div class="watermark">1509송기석</div>
     """, unsafe_allow_html=True)
 # --- HTML/CSS 꾸미기 끝 ---
 
@@ -83,4 +82,5 @@ if st.button("조회하기"):
                 target = user_input.upper()
                 
                 for item in data:
-                    if (target in item.get("cur_unit", "")) or (target in item.
+                    if (target in item.get("cur_unit", "")) or (target in item.get("cur_nm", "")):
+                        unit = item.get("cur_
