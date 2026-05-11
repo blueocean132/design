@@ -3,7 +3,7 @@ import requests
 import urllib.parse
 
 # 1. 페이지 기본 설정 (디자인 및 탭 설정)
-st.set_page_config(page_title="글로벌 환율 조회", page_icon="💸", layout="centered")
+st.set_page_config(page_title="글로벌 환율 조회1509송기석", page_icon="💸", layout="centered")
 
 # 2. 확실한 워터마크를 위한 SVG 배경 생성
 # 이 방식은 Streamlit의 최상단 배경 자체에 이미지를 입히는 것이라 절대 가려지지 않습니다.
