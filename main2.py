@@ -85,7 +85,7 @@ css = f"""
 st.markdown(css, unsafe_allow_html=True)
 
 # 4. 화면 구성
-st.markdown("<h1 class='main-title'>💸 글로벌 실시간 환율 조회</h1>", unsafe_allow_html=True)
+st.markdown("<h1 class='main-title'>💸 글로벌 실시간 환율 조회 1509송기석</h1>", unsafe_allow_html=True)
 st.markdown("<p class='sub-title'>검색하고자 하는 국가명이나 통화코드(예: USD, 일본, 유럽)를 입력하세요.</p>", unsafe_allow_html=True)
 
 # 검색창
