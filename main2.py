@@ -7,6 +7,21 @@ st.set_page_config(page_title="실시간 환율 조회기", page_icon="💰", la
 # --- HTML/CSS 꾸미기 시작 ---
 st.markdown("""
     <style>
+    /* 배경 워터마크 추가 ('1509송기석') */
+    .watermark {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 8rem;
+        color: rgba(0, 0, 0, 0.05); /* 매우 연한 투명도로 배경처럼 설정 */
+        z-index: 0;
+        pointer-events: none; /* 버튼 클릭이나 텍스트 입력을 방해하지 않음 */
+        white-space: nowrap;
+        font-weight: bold;
+        user-select: none;
+    }
+    
     /* 배경색과 폰트 설정 */
     .main {
         background-color: #f0f2f6;
@@ -31,6 +46,8 @@ st.markdown("""
         box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
         text-align: center;
         margin-top: 20px;
+        position: relative;
+        z-index: 1; /* 결과 박스가 워터마크보다 위에 보이도록 설정 */
     }
     .rate-text {
         color: #e74c3c;
@@ -38,6 +55,8 @@ st.markdown("""
         font-weight: bold;
     }
     </style>
+    
+    <div class="watermark">1509송기석</div>
     """, unsafe_allow_html=True)
 # --- HTML/CSS 꾸미기 끝 ---
 
