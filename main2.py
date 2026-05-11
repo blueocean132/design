@@ -14,9 +14,9 @@ st.markdown("""
         left: 50%;
         transform: translate(-50%, -50%);
         font-size: 8rem;
-        color: rgba(0, 0, 0, 0.05); /* 매우 연한 투명도로 배경처럼 설정 */
-        z-index: 0;
-        pointer-events: none; /* 버튼 클릭이나 텍스트 입력을 방해하지 않음 */
+        color: rgba(0, 0, 0, 0.1); /* 글씨가 보이도록 투명도를 살짝 높임 */
+        z-index: 9999; /* 화면 맨 앞으로 오도록 설정 (다른 배경에 안 가려짐) */
+        pointer-events: none; /* 화면 맨 앞에 있어도 클릭/입력을 방해하지 않음 */
         white-space: nowrap;
         font-weight: bold;
         user-select: none;
@@ -47,7 +47,6 @@ st.markdown("""
         text-align: center;
         margin-top: 20px;
         position: relative;
-        z-index: 1; /* 결과 박스가 워터마크보다 위에 보이도록 설정 */
     }
     .rate-text {
         color: #e74c3c;
@@ -84,25 +83,4 @@ if st.button("조회하기"):
                 target = user_input.upper()
                 
                 for item in data:
-                    if (target in item.get("cur_unit", "")) or (target in item.get("cur_nm", "")):
-                        unit = item.get("cur_unit")
-                        name = item.get("cur_nm")
-                        rate = item.get("deal_bas_r")
-                        
-                        # HTML 코드로 결과창 예쁘게 만들기
-                        st.markdown(f"""
-                            <div class="result-box">
-                                <h3>{name} ({unit}) 환율 결과</h3>
-                                <p class="rate-text">1 {unit} = {rate} KRW</p>
-                                <p style="color: gray; font-size: 12px;">(매매기준율 기준)</p>
-                            </div>
-                        """, unsafe_allow_html=True)
-                        found = True
-                        break
-                
-                if not found:
-                    st.error(f"'{user_input}'에 대한 정보를 찾을 수 없습니다.")
-        except Exception as e:
-            st.error(f"에러 발생: {e}")
-    else:
-        st.warning("나라 이름을 입력해 주세요!")
+                    if (target in item.get("cur_unit", "")) or (target in item.
